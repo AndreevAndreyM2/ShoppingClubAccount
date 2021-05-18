@@ -1,0 +1,22 @@
+<?php
+$viewModel = $block->getData('viewModel');
+$_product = $block->getProduct();
+$attribute = $_product->getResource()->getAttribute('club_attribute');
+$attr_value = $attribute->getFrontend()->getValue($_product);
+?>
+<div class="attribute value">
+
+    <?php if ($viewModel->isLoggedIn()): ?>
+    <?php if($viewModel->getCustomerGroup() !=="Shopping Club"): ?>
+            <div class="link">
+                <a href="<?php echo $this->getUrl('newsletter/manage') ?>">Subscribe Shopping Club !</a>
+            </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <?php echo $attr_value ?>
+        <div class="link">
+        <a href="<?php echo $this->getUrl('shoppingclub/account/create') ?>">Join Shopping Club !</a>
+        </div>
+    <?php endif; ?>
+</div>
+
